@@ -18,9 +18,13 @@ public class JpaMain {
         //트랜잭션이란?  데이터베이스의 상태를 변화시키기 해서 수행하는 작업의 단위
 
         try{
-            Member findMember = em.find(Member.class,1L);
+            //비영속
+            Member memder = new Member();
+            memder.setId(100L);
+            memder.setName("HelloJPA");
 
-            findMember.setName("HelloJPA");
+            //영속. 여기서 db저장되는거 아님!
+            em.persist(memder);
 
             tx.commit();//트랜젝션의 처리 과정을 데이터베이스에 반영하기 위해서, 변경된 내용을 모두 영구 저장. + 트랜잭션 종료
         }
